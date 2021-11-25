@@ -28,7 +28,9 @@ const components = {
   Head,
 }
 
+
 export default function PostPage({ source, frontMatter }) {
+  
   return (
     <Layout>
       <header>
@@ -66,6 +68,8 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
+  const fileDir = path.join(process.cwd(), `${params.types}`)
+  // const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
   const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
 
@@ -99,6 +103,7 @@ export const getStaticPaths = async () => {
     paths: [
       { params: { types: 'posts', slug: 'example-post' } },
       { params: { types: 'posts', slug: 'hello-world' } },
+      { params: { types: 'oden', slug: 'hello-world' } },
     ],
     fallback: false,
   }

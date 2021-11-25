@@ -18,7 +18,7 @@ export default function Index({ posts }) {
           <li key={post.filePath}>
             <Link
               as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-              href={`/posts/[slug]`}
+              href={`/[types]/[slug]`}
             >
               <a>{post.data.title}</a>
             </Link>
@@ -30,6 +30,13 @@ export default function Index({ posts }) {
         href={`/[types]/[slug]`}
       >
         <a>test</a>
+      </Link>
+      <hr />
+      <Link
+        as={`/oden/hello-world`}
+        href={`/[types]/[slug]`}
+      >
+        <a>world</a>
       </Link>
     </Layout>
   )
