@@ -25,6 +25,12 @@ export default function Index({ posts }) {
           </li>
         ))}
       </ul>
+      <Link
+        as={`/posts/example-post`}
+        href={`/[types]/[slug]`}
+      >
+        <a>test</a>
+      </Link>
     </Layout>
   )
 }
