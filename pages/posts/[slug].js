@@ -11,6 +11,10 @@ import Layout from '../../components/Layout'
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils'
 import { useRouter } from 'next/router'
 
+
+
+export const filePath = path.join(process.cwd(), `posts`)
+
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
 // to handle import statements. Instead, you must include components in scope
@@ -25,8 +29,6 @@ const components = {
 }
 
 export default function PostPage({ source, frontMatter }) {
-  const router = useRouter()
-  const { slug } = router.query
   return (
     <Layout>
       <header>
@@ -37,7 +39,8 @@ export default function PostPage({ source, frontMatter }) {
         </nav>
       </header>
       <div className="post-header">
-        <h1>{frontMatter.title} / {slug}</h1>
+        {filePath}
+        <h1>{frontMatter.title}</h1>
         {frontMatter.description && (
           <p className="description">{frontMatter.description}</p>
         )}
@@ -63,7 +66,6 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const filePath = path.join(process.cwd(), `${params.types}`)
   const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
   const source = fs.readFileSync(postFilePath)
 
